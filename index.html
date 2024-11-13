@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ICMYO.org is currently undergoing scheduled maintenance. We will be back shortly.">
+    <title>ICMYO - Under Maintenance</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Main styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        /* Maintenance container */
+        .maintenance-container {
+            text-align: center;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .maintenance-container h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #1a73e8;
+        }
+
+        .maintenance-container p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .countdown {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Contact info */
+        .contact-info {
+            margin-top: 30px;
+        }
+
+        .contact-info a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="maintenance-container">
+        <h1>We’ll be back soon!</h1>
+        <p>Our website is currently undergoing scheduled maintenance. We apologize for the inconvenience and appreciate your patience.</p>
+        
+        <!-- Countdown timer -->
+        <div class="countdown" id="countdown">00:00:00</div>
+        
+        <p>Thank you for your understanding.</p>
+
+        <!-- Contact information -->
+        <div class="contact-info">
+            <p>If you need assistance, feel free to reach out:</p>
+            <p>Email: <a href="mailto:support@icmyo.org">support@icmyo.org</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Set the maintenance end time
+        const endTime = new Date().getTime() + 72 * 60 * 60 * 1000; // 24 hours from now
+
+        // Update the countdown every second
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const timeLeft = endTime - now;
+
+            // Calculate hours, minutes, and seconds
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // Display countdown
+            document.getElementById("countdown").innerHTML = 
+                (hours < 10 ? "0" : "") + hours + ":" +
+                (minutes < 10 ? "0" : "") + minutes + ":" +
+                (seconds < 10 ? "0" : "") + seconds;
+
+            // Stop the countdown when the time is up
+            if (timeLeft < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "Maintenance Complete!";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
